@@ -1,20 +1,93 @@
-# ML-Ops | Part-1, Machine Learning
+# 🚴 ML-Ops | Part 1: Machine Learning – Bike Sharing Prediction
 
-This was the assignment for week 1 of the acardia ML-Ops course, focused on learning more about data science, exploration and training our own model.
+This project was part of **Week 1** of the Arcadia ML-Ops course, focused on understanding the basics of machine learning, data exploration, and building predictive models.
 
-# Data exploration
+We worked on a real-world regression problem: predicting the number of bike rentals on a given day and hour based on features such as weather, season, time, and more.
 
-We first start off by exploring the dataset which was given to us:
-[Link to Data](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset).
-By looking through the Data and creating plots we delevlop a feel for the data, and make observations on important things such as skewness, taht we have to account for later on in training.
+---
 
-# Model training
+## 📊 Dataset
 
-In this step we start training our actual model to make predictions on our target variable.
-Since we are trying to predict the bike count of a rental service on a certain day and hour based on the features available from the dataset, we are working on a regression problem.
+We used the [Bike Sharing Dataset](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset) from the UCI Machine Learning Repository.
 
-We start by dropping highly correlated features, and doing some feature enginerring based on the insights we got during exploration. Then the data is split into a training and testing set and afterwards being put through our numerical and categorical pipelines.
+The dataset includes two years of hourly data from a bike rental service, with features such as:
+- Date and time
+- Weather conditions
+- Temperature
+- Working day/holiday indicators
+- Season and year
+- Rental counts
 
-Once we are finished with preprocessing we then start training our estimators on it using GridSearchCV for hyperparamter-tuning.
+---
 
-During this entire step we are logging everything with mlflow to gain insight on what improves the accuracy of our model and keeping track of the paramters used and differences between different estimators.
+## 🔍 Data Exploration
+
+We began by exploring the dataset using **pandas** and **seaborn** to:
+- Visualize distributions and trends
+- Identify skewness in the data
+- Understand feature correlations
+- Spot anomalies and data quality issues
+
+This step helped us make informed decisions about feature engineering and preprocessing.
+
+---
+
+## ⚙️ Preprocessing
+
+We performed the following steps:
+- Dropped highly correlated or redundant features
+- Created new features from existing ones (e.g., extracting hour/day from timestamp)
+- Built separate pipelines for numerical and categorical features using **scikit-learn**
+- Wrapped the preprocessing pipeline in a reusable function to apply it across estimators
+
+---
+
+## 🤖 Model Training
+
+We trained the following models:
+- `LinearRegression`
+- `RandomForestRegressor`
+- `XGBRegressor`
+
+Each model was tuned using `GridSearchCV` to optimize hyperparameters, and evaluated using multiple regression metrics.
+
+### Tools Used
+- **scikit-learn** – preprocessing, pipelines, modeling
+- **xgboost** – gradient boosting regressor
+- **mlflow** – experiment tracking and logging
+- **uv** – dependency management
+- **jupyter** – notebook-based development
+- **pandas** & **seaborn** – data analysis and visualization
+
+---
+
+## 📈 Experiment Tracking
+
+We used **mlflow** to:
+- Log parameters, metrics, and artifacts from each model run
+- Compare estimator performance
+- Keep track of pipeline versions and tuning results
+
+This made it easier to understand what improved model performance and reproduce our best results.
+
+---
+
+## 🧠 Key Learnings
+
+- Practical differences between regression and classification
+- The impact of skewed data on model accuracy
+- The value of pipelines for reproducibility
+- How MLFlow improves collaboration and tracking
+
+---
+
+## 🚀 Next Steps
+
+In future stages of this ML-Ops course, we’ll build on this foundation by:
+- Packaging the training pipeline
+- Deploying the model
+- Monitoring it in production
+
+---
+
+Let me know if you’d like a matching `requirements.txt`, `.env`, or even a diagram to illustrate your ML pipeline visually!
